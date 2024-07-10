@@ -4,7 +4,7 @@ import { TextInput } from 'react-native-gesture-handler';
 import { getDatabase, ref, set } from "firebase/database";
 import { db } from '../config/Config';
 
-export default function RegistroScreen({navigation}:any) {
+export default function RegistroScreen({ navigation }: any) {
 
   const [correo, setcorreo] = useState("")
   const [contrasena, setcontrasena] = useState("")
@@ -13,18 +13,18 @@ export default function RegistroScreen({navigation}:any) {
 
   //Guardar usuarios 
   function guardarUsuarios() {
-  set(ref(db, 'users/' + nick), {
-    username: nick,
-    email: correo,
-    password : contrasena,
-    age: edad
-  });
-  Alert.alert ("Mensaje", "Informacion guardada");
-  setcorreo("");
-  setcontrasena("");
-  setnick("");
-  setedad("");
-}
+    set(ref(db, 'users/' + nick), {
+      username: nick,
+      email: correo,
+      password: contrasena,
+      age: edad
+    });
+    Alert.alert("Mensaje", "Informacion guardada");
+    setcorreo("");
+    setcontrasena("");
+    setnick("");
+    setedad("");
+  }
 
 
   return (
@@ -67,8 +67,8 @@ export default function RegistroScreen({navigation}:any) {
           value={edad}
         />
 
-        <Button title='Guardar' color={styles.boton.color} 
-        onPress={() => {guardarUsuarios(); navigation.navigate('Login')}}/>
+        <Button title='Guardar' color={styles.boton.color}
+          onPress={() => { guardarUsuarios(); navigation.navigate('Login') }} />
       </View>
     </ImageBackground>
   );
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(0, 55, 27, 0.8)', 
+    backgroundColor: 'rgba(0, 55, 27, 0.8)',
   },
   title: {
     fontSize: 45,
