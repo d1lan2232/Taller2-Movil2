@@ -1,8 +1,16 @@
 import { Alert, Button, ImageBackground, StyleSheet, Text, TextInput, View,TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
-
+import React, { useEffect, useState } from 'react'
+import { useFonts } from 'expo-font';
 
 export default function WelcomeScreen({navigation}:any) {
+
+  const [loaded, error] = useFonts({
+    'BigBlueTerm': require('../assets/fonts/BigBlueTerm437NerdFont-Regular.ttf'),
+  });
+
+  if (!loaded && !error) {
+    return null;
+  }
 
   return (
     <ImageBackground 
@@ -41,13 +49,13 @@ const styles = StyleSheet.create({
   btntexto:{
     color:'white',
     fontSize:20,
+    fontFamily: 'BigBlueTerm'
   },
   welcome:{
     color:'black',
     fontSize:50,
     marginBottom:20,
-    fontWeight:'bold',
-
+    fontFamily: 'BigBlueTerm'
   },
   button:{
     backgroundColor:'black',

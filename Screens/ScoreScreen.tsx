@@ -1,8 +1,16 @@
 import { Button, ImageBackground, StyleSheet, Text, TextInput, View } from 'react-native'
 import React from 'react'
 import WelcomeScreen from './WelcomeScreen'
+import { useFonts } from 'expo-font';
 
 export default function ScoreScreen({navigation} : any) {
+  const [loaded, error] = useFonts({
+    'BigBlueTerm': require('../assets/fonts/BigBlueTerm437NerdFont-Regular.ttf'),
+  });
+
+  if (!loaded && !error) {
+    return null;
+  }
   return (
     <ImageBackground
       source={{ uri: 'https://t3.ftcdn.net/jpg/00/88/98/18/360_F_88981880_YjJManMJ6hJmKr5CZteFJAkEzXIh8mxW.jpg' }}
@@ -31,6 +39,7 @@ const styles = StyleSheet.create({
     fontSize: 45,
     color: 'white',
     marginBottom: 20,
+    fontFamily: 'BigBlueTerm'
   },
   input: {
     backgroundColor: 'white',
@@ -44,6 +53,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     borderBottomWidth: 5,
     fontSize: 18,
+    fontFamily: 'BigBlueTerm'
   },
   boton: {
     color: '#00bfff',

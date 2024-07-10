@@ -1,10 +1,19 @@
-import { Alert, Button, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { Alert, Button, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import { TextInput } from 'react-native-gesture-handler';
 import { getDatabase, ref, set } from "firebase/database";
 import { db } from '../config/Config';
+import { useFonts } from 'expo-font';
 
-export default function RegistroScreen({ navigation }: any) {
+export default function RegistroScreen({navigation}:any) {
+
+  const [loaded, error] = useFonts({
+    'BigBlueTerm': require('../assets/fonts/BigBlueTerm437NerdFont-Regular.ttf'),
+  });
+
+  if (!loaded && !error) {
+    return null;
+  }
 
   const [correo, setcorreo] = useState("")
   const [contrasena, setcontrasena] = useState("")
@@ -52,7 +61,7 @@ export default function RegistroScreen({ navigation }: any) {
         />
 
         <TextInput
-          placeholder='Ingrese Nick'
+          placeholder='Ingrese nick'
           onChangeText={(texto) => setnick(texto)}
           value={nick}
           style={styles.input}
@@ -67,8 +76,13 @@ export default function RegistroScreen({ navigation }: any) {
           value={edad}
         />
 
-        <Button title='Guardar' color={styles.boton.color}
-          onPress={() => { guardarUsuarios(); navigation.navigate('Login') }} />
+      <TouchableOpacity style={styles.boton1} onPress={() => {guardarUsuarios(); navigation.navigate('Login')}}>
+          <Text style={{fontWeight: '800'}}>Guardar</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.boton2} onPress={() => navigation.navigate("Welcome")}>
+          <Text style={{fontWeight: '800'}}>Regresar</Text>
+      </TouchableOpacity>
+
       </View>
     </ImageBackground>
   );
@@ -85,6 +99,7 @@ const styles = StyleSheet.create({
     fontSize: 45,
     color: 'white',
     marginBottom: 20,
+    fontFamily: 'BigBlueTerm'
   },
   input: {
     backgroundColor: 'white',
@@ -98,6 +113,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     borderBottomWidth: 5,
     fontSize: 18,
+    fontFamily: 'BigBlueTerm'
   },
   boton: {
     color: '#00bfff',
@@ -106,4 +122,24 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
   },
+  boton1:{
+    borderWidth: 2,
+    borderColor: 'black',
+    padding:10,
+    margin: 8,
+    borderRadius: 25,
+    backgroundColor: "#b9fcb6",
+    width: '30%',
+    alignItems: 'center'
+  },
+  boton2:{
+    borderWidth: 2,
+    borderColor: 'black',
+    padding:10,
+    margin: 8,
+    borderRadius: 25,
+    backgroundColor: '#ff9ba5',
+    width: '30%',
+    alignItems: 'center'
+  }
 });
