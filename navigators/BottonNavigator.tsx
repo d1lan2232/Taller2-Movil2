@@ -15,10 +15,10 @@ const Drawer = createDrawerNavigator();
 
 function MyDrawer() {
   return (
-    <Drawer.Navigator>
-      <Stack.Screen name="Welcome" component={WelcomeScreen} />
-      <Drawer.Screen name="Login" component={LoginScreen} />
-      <Drawer.Screen name="Registro" component={RegistroScreen} />
+    <Drawer.Navigator initialRouteName='Welcome'>
+      <Stack.Screen name="Welcome" component={WelcomeScreen} options={{headerShown: false}}/>
+      <Drawer.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
+      <Drawer.Screen name="Registro" component={RegistroScreen} options={{headerShown: false}}/>
       <Drawer.Screen name="Game" component={GameScreen} />
       <Stack.Screen name="Score" component={ScoreScreen} />
     </Drawer.Navigator>
