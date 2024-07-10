@@ -3,8 +3,17 @@ import React, { useState } from 'react';
 import { TextInput } from 'react-native-gesture-handler';
 import { getDatabase, ref, set } from "firebase/database";
 import { db } from '../config/Config';
+import { useFonts } from 'expo-font';
 
 export default function RegistroScreen({navigation}:any) {
+
+  const [loaded, error] = useFonts({
+    'BigBlueTerm': require('../assets/fonts/BigBlueTerm437NerdFont-Regular.ttf'),
+  });
+
+  if (!loaded && !error) {
+    return null;
+  }
 
   const [correo, setcorreo] = useState("")
   const [contrasena, setcontrasena] = useState("")
@@ -90,6 +99,7 @@ const styles = StyleSheet.create({
     fontSize: 45,
     color: 'white',
     marginBottom: 20,
+    fontFamily: 'BigBlueTerm'
   },
   input: {
     backgroundColor: 'white',
@@ -103,6 +113,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     borderBottomWidth: 5,
     fontSize: 18,
+    fontFamily: 'BigBlueTerm'
   },
   boton: {
     color: '#00bfff',

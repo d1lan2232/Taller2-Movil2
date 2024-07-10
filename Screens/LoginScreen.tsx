@@ -3,8 +3,17 @@ import React, { useState } from 'react';
 import { ImageBackground, StyleSheet, Text, View, TouchableOpacity, Button, Alert } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { auth } from '../config/Config';
+import { useFonts } from 'expo-font';
 
 export default function LoginScreen({navigation}:any) {
+
+  const [loaded, error] = useFonts({
+    'BigBlueTerm': require('../assets/fonts/BigBlueTerm437NerdFont-Regular.ttf'),
+  });
+
+  if (!loaded && !error) {
+    return null;
+  }
   
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
@@ -94,11 +103,12 @@ const styles = StyleSheet.create({
     fontSize: 45,
     color: 'white',
     marginBottom: 20,
+      fontFamily: 'BigBlueTerm'
   },
   input:{
     backgroundColor: 'white',
-    height: 50,
-    width: '55%',
+    height: 60,
+    width: '60%',
     margin: 10,
     marginBottom: 25,
     padding: 10,
@@ -107,7 +117,8 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     textAlign: 'center',
     borderBottomWidth: 5,
-    fontSize: 18,
+    fontSize: 15,
+      fontFamily: 'BigBlueTerm'
   },
   boton1:{
     borderWidth: 2,

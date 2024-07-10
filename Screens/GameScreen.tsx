@@ -1,8 +1,17 @@
 import { Platform, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { WebView } from 'react-native-webview';
+import { useFonts } from 'expo-font';
 
 export default function GameScreen() {
+
+  const [loaded, error] = useFonts({
+    'BigBlueTerm': require('../assets/fonts/BigBlueTerm437NerdFont-Regular.ttf'),
+  });
+
+  if (!loaded && !error) {
+    return null;
+  }
   const localHtmlFile = require('../Game/pacman.html');
   return (
     <WebView
