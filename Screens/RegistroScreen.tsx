@@ -5,7 +5,7 @@ import { getDatabase, ref, set } from "firebase/database";
 import { db } from '../config/Config';
 import { useFonts } from 'expo-font';
 
-export default function RegistroScreen({navigation}:any) {
+export default function RegistroScreen({ navigation }: any) {
 
   const [loaded, error] = useFonts({
     'BigBlueTerm': require('../assets/fonts/BigBlueTerm437NerdFont-Regular.ttf'),
@@ -50,6 +50,7 @@ export default function RegistroScreen({navigation}:any) {
           value={correo}
           style={styles.input}
           keyboardType='email-address'
+
         />
 
         <TextInput
@@ -76,12 +77,12 @@ export default function RegistroScreen({navigation}:any) {
           value={edad}
         />
 
-      <TouchableOpacity style={styles.boton1} onPress={() => {guardarUsuarios(); navigation.navigate('Login')}}>
-          <Text style={{fontWeight: '800'}}>Guardar</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.boton2} onPress={() => navigation.navigate("Welcome")}>
-          <Text style={{fontWeight: '800'}}>Regresar</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.boton1} onPress={() => { guardarUsuarios(); navigation.navigate('Login') }}>
+          <Text style={{ fontWeight: '800' }}>Guardar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.boton2} onPress={() => navigation.navigate("Welcome")}>
+          <Text style={{ fontWeight: '800' }}>Regresar</Text>
+        </TouchableOpacity>
 
       </View>
     </ImageBackground>
@@ -122,20 +123,20 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
   },
-  boton1:{
+  boton1: {
     borderWidth: 2,
     borderColor: 'black',
-    padding:10,
+    padding: 10,
     margin: 8,
     borderRadius: 25,
     backgroundColor: "#b9fcb6",
     width: '30%',
     alignItems: 'center'
   },
-  boton2:{
+  boton2: {
     borderWidth: 2,
     borderColor: 'black',
-    padding:10,
+    padding: 10,
     margin: 8,
     borderRadius: 25,
     backgroundColor: '#ff9ba5',
