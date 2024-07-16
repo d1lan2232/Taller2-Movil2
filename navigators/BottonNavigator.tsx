@@ -11,6 +11,7 @@ import RegistroScreen from '../Screens/RegistroScreen';
 import ScoreScreen from '../Screens/ScoreScreen';
 import GameScreen from '../Screens/GameScreen';
 import CamaraScreen from '../Screens/CamaraScreen';
+import GaleriaScreen from '../Screens/GaleriaScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -21,6 +22,7 @@ function MyDrawer() {
       <Drawer.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
       <Drawer.Screen name="Registro" component={RegistroScreen} options={{headerShown: false}}/>
       <Drawer.Screen name="Camara" component={CamaraScreen} />
+      <Drawer.Screen name='Galeria' component={GaleriaScreen} />
       <Drawer.Screen name="Game" component={GameScreen} />
       <Stack.Screen name="Score" component={ScoreScreen} />
     </Drawer.Navigator>

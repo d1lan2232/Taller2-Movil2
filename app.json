@@ -4,10 +4,10 @@
     "slug": "Taller1",
     "version": "1.0.0",
     "orientation": "all",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/antiguo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/fantasma.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,7 +16,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/antiguo.png",
         "backgroundColor": "#ffffff"
       }
     },

@@ -1,4 +1,4 @@
-import { Button, Image, StyleSheet, Text, View } from 'react-native'
+import { Button, Image, ImageBackground, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import * as ImagePicker from 'expo-image-picker';
 
@@ -25,10 +25,13 @@ export default function CamaraScreen() {
   
     
   return (
+    <ImageBackground source={{uri: "https://img3.wallspic.com/previews/5/9/1/6/5/156195/156195-el_minimalismo-arte-el_arte_abstracto-artista-arte_digital-550x310.jpg"}}
+    style={styles.container}>
     <View style={styles.container}>
       <Button title="Pick an image from camera roll" onPress={pickImage} />
       {image && <Image source={{ uri: image }} style={styles.image} />}
     </View>
+    </ImageBackground>
   )
 }
 
@@ -37,7 +40,6 @@ const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor:"#f3c4d1"
     },
     image: {
       width: 200,
