@@ -7,22 +7,22 @@ export default function WelcomeScreen({navigation}:any) {
   const [loaded, error] = useFonts({
     'BigBlueTerm': require('../assets/fonts/BigBlueTerm437NerdFont-Regular.ttf'),
   });
-
+  
   if (!loaded && !error) {
     return null;
   }
-
+  
   return (
     <ImageBackground 
-    source={{ uri: "https://previews.123rf.com/images/jickaro/jickaro2302/jickaro230200314/199304273-paisaje-de-fondo-de-videojuegos-con-monta%C3%B1as-y-bosques-en-p%C3%ADxeles-de-16-bits-ubicaci%C3%B3n-de-la.jpg" }}
+    source={{ uri: "https://static.filmin.es/images/es/media/42266/1/poster_0_3.webp" }}
     style={styles.container}
     >
-      <Text style={styles.welcome}>Bienvenidos</Text>
+      
       <View style={styles.btncontainer}>
       <TouchableOpacity style={styles.button}>
         <Text style={styles.btntexto} onPress={()=>navigation.navigate('Registro')}>Registrarse</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('Login')}>
+      <TouchableOpacity style={styles.button2} onPress={()=>navigation.navigate('Login')}>
         <Text style={styles.btntexto}>Iniciar Sesión</Text>
       </TouchableOpacity>
       </View>
@@ -36,29 +36,23 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems:'center'
   },
-  input:{
-    backgroundColor: "#666",
-    height: 55,
-    width: "80%",
-    marginBottom: 15,
-    borderRadius:40,
-    paddingHorizontal: 25,
-    fontSize: 30,
-    color: 'white'
-  },
+  
   btntexto:{
-    color:'white',
+    color:'black',
     fontSize:20,
     fontFamily: 'BigBlueTerm'
   },
-  welcome:{
-    color:'black',
-    fontSize:50,
-    marginBottom:20,
-    fontFamily: 'BigBlueTerm'
-  },
+  
   button:{
-    backgroundColor:'black',
+    backgroundColor:'#FFC700',
+    padding:15,
+    borderRadius:25,
+    margin:10,
+    alignItems:'center',
+    width:'80%'
+  },
+  button2:{
+    backgroundColor:'#3CCF4E',
     padding:15,
     borderRadius:25,
     margin:10,

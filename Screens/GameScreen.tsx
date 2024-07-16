@@ -55,6 +55,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     flex: 1, 
-    backgroundColor: "rgba(0, 55, 27, 0.8)", 
+    backgroundColor: '#000000', 
   },
 });
