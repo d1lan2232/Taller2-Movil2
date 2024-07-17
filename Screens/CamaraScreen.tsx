@@ -1,48 +1,63 @@
-import { Button, Image, ImageBackground, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
+import { Button, Image, ImageBackground, StyleSheet, View, Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
+export default function CameraScreen() {
+  const [image, setImage] = useState<string | null>(null);
 
-export default function CamaraScreen() {
-
-    const [image, setImage] = useState("");
-
-    const pickImage = async () => {
-      // No permissions request is necessary for launching the image library
-      let result = await ImagePicker.launchCameraAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-      });
-  
-      console.log(result);
-  
-      if (!result.canceled) {
-        setImage(result.assets[0].uri);
+  // Solicitar permisos al cargar la pantalla
+  useEffect(() => {
+    (async () => {
+      const { status } = await ImagePicker.requestCameraPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert('Permiso necesario', 'Se necesita permiso para acceder a la cámara.');
       }
-    };
-  
+    })();
+  }, []);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
     
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);// Usar result.uri si está definido, de lo contrario usar una cadena vacía
+    }
+  };
+
   return (
-    <ImageBackground source={{uri: "https://img3.wallspic.com/previews/5/9/1/6/5/156195/156195-el_minimalismo-arte-el_arte_abstracto-artista-arte_digital-550x310.jpg"}}
-    style={styles.container}>
-    <View style={styles.container}>
-      <Button title="Pick an image from camera roll" onPress={pickImage} />
-      {image && <Image source={{ uri: image }} style={styles.image} />}
-    </View>
+    <ImageBackground
+      source={{ uri: 'https://i.pinimg.com/736x/b0/a3/9f/b0a39f0c29b4b05d261b55e8fd2d6415.jpg' }}
+      style={styles.backgroundImage}
+    >
+      <View style={styles.container}>
+        <Button title="Tomar foto" onPress={pickImage} />
+        {image && <Image source={{ uri: image }} style={styles.image} />}
+      </View>
     </ImageBackground>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    image: {
-      width: 200,
-      height: 200,
-    },
-  });
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    width: 300,
+    height: 300,
+    marginTop: 20,
+    borderRadius: 10,
+    resizeMode: 'cover',
+  },
+});

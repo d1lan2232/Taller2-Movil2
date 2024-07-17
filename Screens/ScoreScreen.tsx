@@ -1,9 +1,8 @@
-import { Button, ImageBackground, StyleSheet, Text, TextInput, View } from 'react-native'
-import React from 'react'
-import WelcomeScreen from './WelcomeScreen'
+import React from 'react';
+import { Button, ImageBackground, StyleSheet, Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
 
-export default function ScoreScreen({navigation} : any) {
+export default function ScoreScreen({ navigation }: any) {
   const [loaded, error] = useFonts({
     'BigBlueTerm': require('../assets/fonts/BigBlueTerm437NerdFont-Regular.ttf'),
   });
@@ -11,62 +10,78 @@ export default function ScoreScreen({navigation} : any) {
   if (!loaded && !error) {
     return null;
   }
+
   return (
     <ImageBackground
       source={{ uri: 'https://t3.ftcdn.net/jpg/00/88/98/18/360_F_88981880_YjJManMJ6hJmKr5CZteFJAkEzXIh8mxW.jpg' }}
-      style={styles.imagen}
+      style={styles.imageBackground}
     >
       <View style={styles.container}>
         <Text style={styles.title}>Puntuaciones</Text>
 
-        <Text style={styles.input}> Dilan</Text>
-        <Text style={styles.input}> 236</Text>
-        <Text style={styles.input}> Karo</Text>
-        <Text style={styles.input}> 175</Text>
-        <Text style={styles.input}> Daya</Text>
-        <Text style={styles.input}> 143</Text>
-        <Text style={styles.input}> Hernán</Text>
-        <Text style={styles.input}> 137</Text>
+        <View style={styles.scoreContainer}>
+          <View style={styles.row}>
+            <Text style={styles.label}>Nick</Text>
+            <Text style={styles.score}>Puntuación</Text>
+          </View>
+          
+          {/* Ejemplo de datos de puntuación */}
+          <View style={styles.row}>
+            <Text style={styles.label}>Usuario1</Text>
+            <Text style={styles.score}>1000</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.label}>Usuario2</Text>
+            <Text style={styles.score}>950</Text>
+          </View>
+          {/* Fin del ejemplo */}
 
-        <Button title='Volver' color={styles.boton.color} onPress={()=> navigation.navigate('Game')} />
+        </View>
+
+        <Button title='Volver' color='#00bfff' onPress={() => navigation.navigate('Game')} />
       </View>
     </ImageBackground>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(0, 55, 27, 0.8)', 
-  },
-  title: {
-    fontSize: 45,
-    color: 'white',
-    marginBottom: 20,
-    fontFamily: 'BigBlueTerm'
-  },
-  input: {
-    backgroundColor: 'white',
-    height: 50,
-    width: '80%',
-    margin: 10,
-    padding: 10,
-    borderColor: 'black',
-    borderWidth: 3,
-    borderRadius: 25,
-    textAlign: 'center',
-    borderBottomWidth: 5,
-    fontSize: 18,
-    fontFamily: 'BigBlueTerm'
-  },
-  boton: {
-    color: '#00bfff',
-  },
-  imagen: {
+  imageBackground: {
     flex: 1,
     resizeMode: 'cover',
   },
-
-})
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 55, 27, 0.8)',
+    padding: 20,
+  },
+  title: {
+    fontSize: 40,
+    color: 'white',
+    marginBottom: 20,
+    fontFamily: 'BigBlueTerm',
+  },
+  scoreContainer: {
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    width: '100%',
+    borderRadius: 10,
+    padding: 10,
+    marginTop: 20,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderBottomColor: 'black',
+    borderBottomWidth: 2,
+  },
+  label: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  score: {
+    fontSize: 18,
+  },
+});
