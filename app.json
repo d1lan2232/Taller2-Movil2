@@ -18,7 +18,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/antiguo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.d1lan.Taller1"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -27,9 +28,22 @@
       [
         "expo-font",
         {
-          "fonts": ["path/to/file.ttf"]
+          "fonts": [
+            "path/to/file.ttf"
+          ]
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "e295d69e-5202-4b07-943a-c5231d598fd1"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/e295d69e-5202-4b07-943a-c5231d598fd1"
+    }
   }
 }
