@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet} from 'react-native';
 import Navegator from './navigators/BottonNavigator';
 
 export default function App() {
