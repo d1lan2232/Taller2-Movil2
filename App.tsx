@@ -3,9 +3,7 @@ import Navegator from './navigators/BottonNavigator';
 
 export default function App() {
   return (
-
    <Navegator/>
-
   );
 }
 
