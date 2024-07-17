@@ -19,8 +19,14 @@ export default function ScoreScreen({navigation} : any) {
       <View style={styles.container}>
         <Text style={styles.title}>Puntuaciones</Text>
 
-        <Text style={styles.input}> Nick</Text>
-        <Text style={styles.input}> Puntuación</Text>
+        <Text style={styles.input}> Dilan</Text>
+        <Text style={styles.input}> 236</Text>
+        <Text style={styles.input}> Karo</Text>
+        <Text style={styles.input}> 175</Text>
+        <Text style={styles.input}> Daya</Text>
+        <Text style={styles.input}> 143</Text>
+        <Text style={styles.input}> Hernán</Text>
+        <Text style={styles.input}> 137</Text>
 
         <Button title='Volver' color={styles.boton.color} onPress={()=> navigation.navigate('Game')} />
       </View>
