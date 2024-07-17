@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Alert, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { getDatabase, ref, set } from "firebase/database";
+import { ref, set } from "firebase/database";
 import { db } from '../config/Config';
 import { useFonts } from 'expo-font';
 
