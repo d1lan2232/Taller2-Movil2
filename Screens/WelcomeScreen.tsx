@@ -1,5 +1,5 @@
 import { ImageBackground, StyleSheet, Text, TextInput, View,TouchableOpacity } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useFonts } from 'expo-font';
 
 export default function WelcomeScreen({navigation}:any) {
