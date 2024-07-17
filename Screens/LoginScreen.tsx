@@ -1,83 +1,75 @@
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react';
-import { ImageBackground, StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import { Alert, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/Config';
 import { useFonts } from 'expo-font';
 
-export default function LoginScreen({navigation}: any) {
-
+export default function LoginScreen({ navigation }:any) {
   const [loaded, error] = useFonts({
     'BigBlueTerm': require('../assets/fonts/BigBlueTerm437NerdFont-Regular.ttf'),
   });
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   if (!loaded && !error) {
     return null;
   }
-  
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  function login() {
+  // Función para realizar el inicio de sesión
+  const login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
-        navigation.navigate("Game");
+        // Inicio de sesión exitoso, navegar a la siguiente pantalla
+        navigation.navigate('Game');
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-
-        console.log(errorCode);
-        console.log(errorMessage);
+        // Manejo de errores según el código de error devuelto por Firebase
+        let errorMessage = 'Ocurrió un error. Revisa tus credenciales e inténtalo nuevamente.';
         
-        let titulo = "";
-        let mensaje = "";
-
-        if (errorCode === "auth/wrong-password") {
-          titulo = "Error de contraseña";
-          mensaje = "Contraseña incorrecta, revisar credenciales";
-        } else if (errorCode === "auth/user-not-found") {
-          titulo = "Error de usuario";
-          mensaje = "Usuario no encontrado, revisar el correo electrónico";
-        } else {
-          titulo = "Error de acceso";
-          mensaje = "Revisar credenciales de correo y contraseña";
+        if (error.code === 'auth/wrong-password') {
+          errorMessage = 'Contraseña incorrecta. Verifica tu contraseña e intenta de nuevo.';
+        } else if (error.code === 'auth/user-not-found') {
+          errorMessage = 'Usuario no encontrado. Verifica tu correo electrónico.';
         }
 
-        Alert.alert(titulo, mensaje);
-        
-        setEmail("");
-        setPassword("");
+        Alert.alert('Error de inicio de sesión', errorMessage);
+        setPassword(''); // Limpiar campo de contraseña
       });
-  }
+  };
 
   return (
     <ImageBackground
       source={{ uri: 'https://disruptivoo.com/wp-content/uploads/2022/08/Mejores-Fondos-de-Pantalla-de-Pacman-Fondos-Gamers-9.jpg' }}
-      style={styles.imagen}
+      style={styles.backgroundImage}
     >
       <View style={styles.container}>
-        <Text style={styles.titulo}>Login</Text>
+        <Text style={styles.title}>Login</Text>
 
         <TextInput
-          placeholder="Ingrese su correo"
-          onChangeText={(texto) => setEmail(texto)}
+          placeholder="Correo electrónico"
+          onChangeText={(text) => setEmail(text)}
+          value={email}
           style={styles.input}
+          keyboardType="email-address"
+          autoCapitalize="none"
         />
+
         <TextInput
-          placeholder="Ingrese su contraseña"
-          secureTextEntry
-          onChangeText={(texto) => setPassword(texto)}
+          placeholder="Contraseña"
+          onChangeText={(text) => setPassword(text)}
+          value={password}
           style={styles.input}
+          secureTextEntry
+          autoCapitalize="none"
         />
         
-        <TouchableOpacity style={styles.boton1} onPress={() => login()}>
-          <Text style={styles.botonTexto}>Ingresar</Text>
+        <TouchableOpacity style={styles.button} onPress={login}>
+          <Text style={styles.buttonText}>Ingresar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.boton2} onPress={() => navigation.navigate("Welcome")}>
-          <Text style={styles.botonTexto}>Regresar</Text>
+        <TouchableOpacity style={[styles.button, { backgroundColor: '#ff9ba5' }]} onPress={() => navigation.navigate('Welcome')}>
+          <Text style={styles.buttonText}>Regresar</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>
@@ -85,7 +77,7 @@ export default function LoginScreen({navigation}: any) {
 }
 
 const styles = StyleSheet.create({
-  imagen: {
+  backgroundImage: {
     flex: 1,
     resizeMode: 'cover',
   },
@@ -95,7 +87,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
   },
-  titulo: {
+  title: {
     fontSize: 45,
     color: 'white',
     marginBottom: 20,
@@ -103,49 +95,29 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: 'white',
-    height: 60,
+    height: 50,
     width: '80%',
-    margin: 10,
-    padding: 10,
-    borderColor: 'black',
-    borderWidth: 3,
+    marginVertical: 10,
+    paddingHorizontal: 20,
     borderRadius: 25,
-    textAlign: 'center',
-    borderBottomWidth: 5,
-    fontSize: 15,
+    fontSize: 18,
     fontFamily: 'BigBlueTerm',
   },
-  boton1: {
-    borderWidth: 2,
-    borderColor: 'black',
-    padding: 10,
-    margin: 8,
-    borderRadius: 25,
-    backgroundColor: "#2F89FC",
-    width: '60%',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.8,
-    shadowRadius: 10,
-    elevation: 5,
-  },
-  boton2: {
-    borderWidth: 2,
-    borderColor: 'black',
-    padding: 10,
-    margin: 8,
-    borderRadius: 25,
+  button: {
     backgroundColor: '#2F89FC',
     width: '60%',
+    height: 50,
+    borderRadius: 25,
+    justifyContent: 'center',
     alignItems: 'center',
+    marginVertical: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.8,
     shadowRadius: 10,
     elevation: 5,
   },
-  botonTexto: {
+  buttonText: {
     fontWeight: '800',
     fontSize: 18,
     color: 'black',

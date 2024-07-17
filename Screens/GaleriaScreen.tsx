@@ -53,8 +53,9 @@ export default function GaleriaScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
+        resizeMode: 'cover',
         justifyContent: 'center',
+        alignItems: 'center',
     },
     image: {
         width: 200,
@@ -80,7 +81,9 @@ const styles = StyleSheet.create({
     },
     botonTexto: {
         color: '#FFD700', 
+        textAlign:"center",
+        justifyContent:"center",
         fontWeight: 'bold',
-        fontSize: 16,
+        fontSize: 20,
     }
 });
