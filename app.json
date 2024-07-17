@@ -3,7 +3,7 @@
     "name": "Taller1",
     "slug": "Taller1",
     "version": "1.0.0",
-    "orientation": "all",
+    "orientation": "portrait",
     "icon": "./assets/antiguo.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -18,7 +18,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/antiguo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.alhernano.Taller2"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -27,9 +28,22 @@
       [
         "expo-font",
         {
-          "fonts": ["path/to/file.ttf"]
+          "fonts": [
+            "path/to/file.ttf"
+          ]
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "0afab815-9262-42c1-89f2-4651b2a8f570"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/0afab815-9262-42c1-89f2-4651b2a8f570"
+    }
   }
 }
